@@ -52,21 +52,22 @@ function part2(): void
     $coords=[0,0];
     $dir=0;
     $adjDirs = array_merge($dirs, [[-1,-1],[1,1],[1,-1],[-1,1]]);
-    $i=0;
+    $sum=0;
     do {
-        $sum = 0;
-        $coords[0] += $dirs[$dir][0];
-        $coords[1] += $dirs[$dir][1];
-        foreach ($adjDirs as $d)
-            $sum+=$spiral[($coords[0] + $d[0]).",".($coords[1] + $d[1])]??0;
-        $spiral[$coords[0].",".$coords[1]] = $sum;
-        $i++;
-        if ($i%$inc == 0)
+        for ($i = 0; $i < 2; $i++) {
+            for ($j=0; $j<$inc; $j++) {
+                $coords[0] += $dirs[$dir][0];
+                $coords[1] += $dirs[$dir][1];
+                $sum = 0;
+                foreach ($adjDirs as $d)
+                    $sum += $spiral[($coords[0] + $d[0]) . "," . ($coords[1] + $d[1])] ?? 0;
+                $spiral[$coords[0] . "," . $coords[1]] = $sum;
+                if ($sum > $input) break 2;
+            }
             $dir = ($dir + 1) % 4;
-        if ($i==$inc*($inc+1)) {
-            $inc++;
         }
-    } while ($sum < $input);
+        $inc++;
+    } while ($sum <= $input);
 
     echo "Part 2: Value = $sum\n";
 }
