@@ -1,5 +1,5 @@
 <?php
-define("INT_MAX", 2147483647);
+const INT_MAX = 2147483647;
 
 $seeds = array();
 $maps = array();
