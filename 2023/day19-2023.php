@@ -53,7 +53,7 @@ function getAccepted($wfs, $wf="in", $ratings=["x"=>[1,4000],"m"=>[1,4000],"a"=>
     if ($wf == 'R') return 0;
     if ($wf == 'A') {
         $t = 1;
-        foreach ($ratings as $k=>$r) {
+        foreach ($ratings as $r) {
             $t*=$r[1]-$r[0]+1;
         }
         return $t;
