@@ -34,10 +34,8 @@ function pushButton(&$modules, $count=0) : mixed {
     while ($q) {
         list($p, $m, $src) = array_shift($q);
         $pulses[$p]++;
-        if ($m == "rx") {
-            if (!$p) return true;
-            else continue;
-        }
+        if (!isset($modules[$m])) continue;
+
         if ($modules[$m]["type"] == '%' && $p==0) {
             $modules[$m]["state"]++;
             $modules[$m]["state"]%=2;
