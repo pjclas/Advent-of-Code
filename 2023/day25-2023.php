@@ -17,6 +17,7 @@ function keyname($v1,$v2) {
 }
 
 // refer to karger algorithm for finding min-cut for a graph
+// could also consider stoer-wagner algorithm instead
 function contract($G, $t) : array {
     list($V,$E,$map) = $G;
     while (count($V) > $t) {
